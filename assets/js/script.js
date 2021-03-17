@@ -1,6 +1,11 @@
-var apiKey = keys.apiKey
-var apiURL = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
 
-var response = fetch {
-    api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-};
+var city = "";
+var searchCity = $("#search-city");
+var searchButton = $("#search-button");
+var clearButton = $("#clear-history");
+var currentCity = $("#current-city");
+var currentTemperature = $("#temperature");
+var currentHumidity = $("#humidity");
+var currentWindSpeed = $("#wind-speed");
+var currentUVIndex = $("#uv-index");
+var sCity = [];
