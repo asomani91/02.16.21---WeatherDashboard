@@ -118,4 +118,11 @@ function addToList(c) {
     $(listEl).attr("data-value", c.toUpperCase());
     $("list-group").append(listEl);
 }
-    
+// DISPLAY PAST SEARCH WHEN LIST GROUP ITEM IS CLICKED IN SEARCH HISTORY
+function invokePastSearch(event) {
+    var liEl = event.target;
+    if (event.target.matches("li")) {
+        city = liEl.textContent.trim();
+        currentWeather(city);
+    }
+}
