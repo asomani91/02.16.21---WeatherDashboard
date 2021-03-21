@@ -10,7 +10,7 @@ var currentWindSpeed = $("#wind-speed");
 var currentUVIndex = $("#uv-index");
 var sCity = [];
 
-var APIKey = "a0aca8a89948154a4182dcecc780b513";
+var APIKey = "994cee15da09e492d28e3d200b297b72";
 
 // SEARCH CITY TO SEE IT EXISTS FROM STORAGE //
 function find(c) {
@@ -118,7 +118,7 @@ function addToList(c) {
     $(listEl).attr("data-value", c.toUpperCase());
     $("list-group").append(listEl);
 }
-// DISPLAY PAST SEARCH WHEN LIST GROUP ITEM IS CLICKED IN SEARCH HISTORY
+// DISPLAY PAST SEARCH WHEN LIST GROUP ITEM IS CLICKED IN SEARCH HISTORY //
 function invokePastSearch(event) {
     var liEl = event.target;
     if (event.target.matches("li")) {
@@ -126,3 +126,32 @@ function invokePastSearch(event) {
         currentWeather(city);
     }
 }
+
+// RENDER FUNCTION // 
+function loadlastCity() {
+    $("ul").empty();
+    var sCity = JSON.parse(localStorage.getItem("city name"));
+    if (sCity !== null) {
+        sCity = JSON.parse(localStorage.getItem("city name"));
+        for (i = 0; i < sCity.length; i++) {
+            addToList(sCity[i]);
+        }
+        city = sCity[i -1];
+        currentWeather(city);
+    }
+}
+
+// CLEAR SEARCH HISTORY //
+
+function clearHistory(event) {
+    event.preventDefault();
+    sCity = [];
+    localStorage.removeItem("city name");
+    document.location.reload();
+}
+
+// CLICK HANDLERS //
+$("#search-button").on("click", displayWeather);
+$(document).on("click", invokePastSearch);
+$(window).on("load", loadlastCity);
+$("#clear-history").on("click", clearHistory);
