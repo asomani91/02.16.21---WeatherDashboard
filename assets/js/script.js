@@ -10,8 +10,6 @@ var currentWindSpeed = $("#wind-speed");
 var currentUVIndex = $("#uv-index");
 var sCity = [];
 
-var APIKey = "994cee15da09e492d28e3d200b297b72";
-
 // SEARCH CITY TO SEE IT EXISTS FROM STORAGE //
 function find(c) {
     for (var i = 0; i < sCity.length; i++) {
@@ -21,6 +19,9 @@ function find(c) {
     }
     return 1;
 }
+
+// API KEY //
+var APIKey = "994cee15da09e492d28e3d200b297b72";
 
 // DISPLAY CURRENT & FUTURE WEATHER //
 
@@ -33,7 +34,7 @@ function displayWeather(event) {
 }
 // GET DATA FROM SERVER //
 function currentWeather(city) {
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APID=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -78,7 +79,7 @@ function currentWeather(city) {
 // RETURN UV INDEX RESPONSE //
 function UVIndex(ln, lt) {
     var uvqURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lt + "&lon=" + ln;
-    $ajax({
+    $.ajax({
         url: uvqURL,
         method: "GET"
     }).then(function (response) {
@@ -89,7 +90,7 @@ function UVIndex(ln, lt) {
 // 5 DAY FORECAST //
 function forecast(cityid) {
     var dayover = false;
-    var queryforecastURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityid + "&appid=" + APIKey;
+    var queryforecastURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityid + "&APPID=" + APIKey;
     $.ajax({
         url: queryforecastURL,
         method: "GET"
